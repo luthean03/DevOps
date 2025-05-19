@@ -1,58 +1,36 @@
 # Ignore all .env files in any directory
-**/.env
+*.env
+**/*.env
 
-# Environment variable files
+# Environment variable files local overrides
 .env.local
 .env.*.local
 
 # Maven build output
 /target/
-/pom.xml.tag
-/pom.xml.releaseBackup
-/pom.xml.versionsBackup
 /logs/
-/*.log
+*.log
 
 # Spring Boot Devtools
 restart.flag
 
-# IntelliJ IDEA
+# IDEs and editors
 /.idea/
-/*.iml
-/*.iws
-/out/
-
-# Eclipse
-/.classpath
-/.project
-/.settings/
-/*.launch
-
-# VS Code
 /.vscode/
-
-# macOS
-.DS_Store
-
-# Linux swap
+/*.iml
+*.sw?
 *~
 
-# Windows
+# OS files
+.DS_Store
 Thumbs.db
-ehthumbs.db
-Desktop.ini
 
-# Docker
+# Docker data volume mounts
 **/data/*
 !**/data/.gitkeep
 
-# Logs
-*.log
-
-# Compiled Java files
+# Java compiled classes and packages
 *.class
-
-# Archives and packages
 *.jar
 *.war
 *.ear
