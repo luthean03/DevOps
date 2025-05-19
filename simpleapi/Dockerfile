@@ -13,6 +13,10 @@ COPY src ./src
 # Build the project
 RUN mvn package -DskipTests
 
+FROM nginx:alpine
+
+COPY templates/index.html /usr/share/nginx/html/index.html
+
 # ---------- Run Stage ----------
 FROM eclipse-temurin:21-jre-alpine
 ENV MYAPP_HOME=/opt/myapp
