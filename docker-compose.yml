@@ -1,34 +1,24 @@
-version: "3.8"
-
 services:
   database:
-    build:
-      context: ./Database
-      dockerfile: Dockerfile
+    build: ./Database
     env_file:
       - .env
     volumes:
       - ./Database/data:/var/lib/postgresql/data
     networks:
       - db-network
-    restart: unless-stopped
+    restart: on-failure:5
 
   backend:
-    build:
-      context: ./simpleapi
-      dockerfile: Dockerfile
+    build: ./simpleapi
     env_file:
       - .env
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://${DB_HOST}:${DB_PORT}/${POSTGRES_DB}
-      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
-      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     depends_on:
       - database
     networks:
       - db-network
       - front-network
-    restart: on-failure
+    restart: on-failure:5
 
   httpd:
     build:
