@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
 
   backend:
-    build: ./simpleapi
+    build: ./Backend
     env_file:
       - .env
     depends_on:
@@ -21,7 +21,7 @@ services:
     restart: on-failure:3
 
   httpd:
-    build: ./http-server
+    build: ./Httpd
     env_file:
       - .env
     depends_on:
