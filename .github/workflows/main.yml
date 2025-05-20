@@ -43,5 +43,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: your-dockerhub-username/your-image-name:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/devops-backend:latest
+
 
