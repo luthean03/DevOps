@@ -27,12 +27,8 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Build and test with Maven + SonarCloud
-        run: mvn -B verify sonar:sonar \
-          -Dsonar.projectKey=luthean03_DevOps \
-          -Dsonar.organization=luthean03 \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          --file ./simple-api/pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=luthean03_DevOps -Dsonar.organization=luthean03 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
+
 
   build-and-push-docker-image:
     needs: test-backend
