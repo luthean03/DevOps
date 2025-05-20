@@ -44,3 +44,4 @@ jobs:
           context: ./http-server
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/devops-httpd:latest
+
