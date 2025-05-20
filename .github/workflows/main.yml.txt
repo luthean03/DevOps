@@ -67,3 +67,5 @@ jobs:
           context: ./http-server
           tags: ${{ secrets.DOCKER_USERNAME }}/devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
+
+          
