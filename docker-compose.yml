@@ -1,6 +1,6 @@
 services:
   database:
-    build: ./Database
+    build: ./database
     env_file:
       - .env
     volumes:
@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
 
   backend:
-    build: ./Backend
+    build: ./simple-api
     env_file:
       - .env
     depends_on:
@@ -21,7 +21,7 @@ services:
     restart: on-failure:3
 
   httpd:
-    build: ./Httpd
+    build: ./http-server
     env_file:
       - .env
     depends_on:
