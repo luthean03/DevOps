@@ -37,12 +37,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Then you can build and push your Docker images
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./simple-api
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/devops-backend:latest
+
 
 
