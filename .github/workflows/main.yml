@@ -8,7 +8,7 @@ on:
   pull_request:
 
 jobs:
-  test-backend: 
+  test-backend:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -19,8 +19,20 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Build and test with Maven
-        run: mvn clean verify --file simple-api/pom.xml
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Build and test with Maven + SonarCloud
+        run: mvn -B verify sonar:sonar \
+          -Dsonar.projectKey=luthean03_DevOps \
+          -Dsonar.organization=luthean03 \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          --file ./simple-api/pom.xml
 
   build-and-push-docker-image:
     needs: test-backend
