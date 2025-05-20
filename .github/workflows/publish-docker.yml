@@ -3,7 +3,7 @@ name: Publish Docker Images
 on:
   push:
     branches: 
-    - main
+      - main
   workflow_run:
     workflows: ["Test Backend"]
     types:
@@ -45,4 +45,4 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/devops-httpd:latest
 
-          
+
