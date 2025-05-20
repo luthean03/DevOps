@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build image and push backend
+      - name: Build image and push backendk
         uses: docker/build-push-action@v6
         with:
           context: ./simple-api
@@ -44,3 +44,4 @@ jobs:
           context: ./http-server
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/devops-httpd:latest
+          
