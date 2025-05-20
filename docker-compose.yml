@@ -7,7 +7,7 @@ services:
       - ./Database/data:/var/lib/postgresql/data
     networks:
       - db-network
-    restart: on-failure:5
+    restart: on-failure:3
 
   backend:
     build: ./simpleapi
@@ -18,7 +18,7 @@ services:
     networks:
       - db-network
       - front-network
-    restart: on-failure:5
+    restart: on-failure:3
 
   httpd:
     build:
@@ -32,7 +32,7 @@ services:
       - "80:80"
     networks:
       - front-network
-    restart: unless-stopped
+    restart: on-failure:3
 
 networks:
   db-network:
