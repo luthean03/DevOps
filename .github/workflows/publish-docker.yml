@@ -3,17 +3,15 @@ name: Publish Docker Images
 on:
   workflow_run:
     workflows: ["Test Backend"]
-    types:
-      - completed
-  push:
     branches:
       - main
+    types:
+      - completed
 
 jobs:
   build-and-push-docker-image:
-    if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') || github.event_name == 'push' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-24.04
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
