@@ -30,7 +30,11 @@ jobs:
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
+      
+      - name: Create .env file from secret
+        run: |
+          echo "${{ secrets.ENV_CONTENT }}" > ansible/.env
+          
       - name: Run Ansible Playbook
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
