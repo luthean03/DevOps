@@ -37,6 +37,11 @@ public class DepartmentController {
         return ResponseEntity.ok(this.studentService.getStudentsByDepartmentName(name));
     }
 
+    @GetMapping("test")
+    public ResponseEntity<Object> getDepartmentsTest() {
+        return ResponseEntity.ok(departmentService.getDepartments());
+    }
+
     @GetMapping("/{departmentName}")
     public ResponseEntity<Object> getDepartmentByName(@PathVariable(name="departmentName") String name) {
         Optional<Department> optionalDepartment = Optional.ofNullable(this.departmentService.getDepartmentByName(name));
@@ -55,11 +60,6 @@ public class DepartmentController {
         }
 
         return ResponseEntity.ok(this.studentService.getStudentsNumberByDepartmentName(name));
-    }
-
-    @GetMapping("/test")
-    public ResponseEntity<String> testEndpoint() {
-        return ResponseEntity.ok("Test endpoint is working!");
     }
     
 }

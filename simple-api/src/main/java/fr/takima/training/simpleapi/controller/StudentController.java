@@ -26,14 +26,15 @@ public class StudentController {
         return  ResponseEntity.ok(studentService.getAll());
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Object> getStudentById(@PathVariable(name="id") long id) {
-        Optional<Student> studentOptional = Optional.ofNullable(this.studentService.getStudentById(id));
-        if (studentOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    @GetMapping
+    public ResponseEntity<Object> getStudents() {
+        String exportUrl = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/export")
+                .toUriString();
+        return ResponseEntity.ok()
+                .header("Link", "<" + exportUrl + ">; rel=\"export\"")
+                .body(studentService.getAll());
         }
-        return  ResponseEntity.ok(studentOptional.get());
-    }
 
     @PostMapping
     public ResponseEntity<Object> addStudent(@RequestBody Student student) {
