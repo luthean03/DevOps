@@ -1,8 +1,11 @@
+# Enable proxy modules for reverse proxy functionality
 LoadModule proxy_module modules/mod_proxy.so
 LoadModule proxy_http_module modules/mod_proxy_http.so
 
+# Configure a virtual host to act as a reverse proxy
 <VirtualHost *:80>
     ProxyPreserveHost On
+    # Forward all requests to the backend container
     ProxyPass        / http://${CONTAINER_PROXY}:8080/
     ProxyPassReverse / http://${CONTAINER_PROXY}:8080/
 </VirtualHost>
