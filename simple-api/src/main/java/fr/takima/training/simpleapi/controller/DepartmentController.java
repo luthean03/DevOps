@@ -58,7 +58,8 @@ public class DepartmentController {
     }
 
     @GetMapping("/test")
-    public String test() {
-        return "Test";
+    public ResponseEntity<String> testEndpoint() {
+        return ResponseEntity.ok("Test endpoint is working!");
     }
+    
 }
