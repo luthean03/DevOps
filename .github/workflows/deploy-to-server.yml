@@ -33,11 +33,8 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Run Ansible Playbook
-        working-directory: ansible
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
         run: |
-          ansible-playbook \
-            -i inventories/setup.yml \
-            playbook.yml \
-            -u admin
+          ls -R \
+          ansible-playbook -i ansible/inventories/setup.yml  ansible/playbook.yml 
