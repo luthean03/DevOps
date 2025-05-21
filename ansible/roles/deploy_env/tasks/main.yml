@@ -1,0 +1,17 @@
+---
+# tasks file for roles/deploy_env
+- name: Ensure project directory exists
+  file:
+    path: /home/admin/project
+    state: directory
+    owner: admin
+    group: admin
+    mode: '0755'
+
+- name: Deploy .env file to remote server
+  copy:
+    src: ../../../../.env
+    dest: /home/admin/project/.env
+    owner: admin
+    group: admin
+    mode: '0644'

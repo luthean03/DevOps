@@ -1,0 +1,11 @@
+- name: Launch backend API container
+  docker_container:
+    name: devops-backend-1
+    image: luthean3/devops-simple-api:latest   # Remplace par le nom de ton image sur Docker Hub ou registre privé
+    pull: yes
+    env_file: /home/admin/project/.env
+    networks:
+      - name: db-network
+      - name: front-network
+    restart_policy: on-failure
+    restart_retries: 3

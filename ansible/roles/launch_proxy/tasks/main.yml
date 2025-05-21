@@ -1,0 +1,11 @@
+- name: Launch HTTPD proxy container
+  docker_container:
+    name: devops-httpd-1
+    image: luthean3/devops-httpd:latest   
+    pull: yes
+    env_file: /home/admin/project/.env
+    networks:
+      - name: front-network
+    ports:
+      - "80:80"
+    restart_policy: no

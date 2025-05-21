@@ -1,0 +1,11 @@
+- name: Create db-network
+  docker_network:
+    name: db-network
+    driver: bridge
+    state: present
+
+- name: Create front-network
+  docker_network:
+    name: front-network
+    driver: bridge
+    state: present

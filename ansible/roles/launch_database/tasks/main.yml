@@ -1,0 +1,12 @@
+---
+- name: Launch PostgreSQL container from Docker Hub image
+  docker_container:
+    name: devops-database-1
+    image: luthean3/devops-database:latest
+    pull: yes
+    env_file: /home/admin/project/.env
+    volumes:
+      - /home/admin/project/database/data:/var/lib/postgresql/data
+    networks:
+      - name: db-network
+    restart_policy: unless-stopped
