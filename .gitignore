@@ -26,11 +26,14 @@ restart.flag
 Thumbs.db
 
 # Docker data volume mounts
-**/data/*
-!**/data/.gitkeep
+database/data/
+
 
 # Java compiled classes and packages
 *.class
 *.jar
 *.war
 *.ear
+
+# ssh folder
+ssh/
