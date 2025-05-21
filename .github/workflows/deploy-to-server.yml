@@ -1,16 +1,15 @@
 name: Deploy to Server
 
 on:
-  workflow_run:
-    workflows: ["Test Backend"]
-    branches:
+  push:
+    branches: 
       - main
-    types:
-      - completed
+      - develop
+  pull_request:
+
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-24.04
 
     steps:
@@ -36,5 +35,4 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
         run: |
-          ls -R \
           ansible-playbook -i ansible/inventories/setup.yml  ansible/playbook.yml 
