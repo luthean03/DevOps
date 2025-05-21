@@ -71,4 +71,12 @@ public class StudentController {
 
         return ResponseEntity.ok().build();
     }
+    @GetMapping(value = "/{id}/department")
+    public ResponseEntity<Object> getStudentDepartment(@PathVariable(name="id") long id) {
+        Optional<Student> studentOptional = Optional.ofNullable(this.studentService.getStudentById(id));
+        if (studentOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return  ResponseEntity.ok(studentOptional.get().getDepartment());
+    }
 }
