@@ -1,46 +1,43 @@
 services:
-  # PostgreSQL database service
   database:
     build: ./database
     env_file:
       - .env
     volumes:
-      - ./database/data:/var/lib/postgresql/data  # Persist database data
+      - ./Database/data:/var/lib/postgresql/data
     networks:
       - db-network
     restart: unless-stopped
 
-  # Backend API service
   backend:
     build: ./simple-api
     env_file:
       - .env
     depends_on:
-      - database  # Wait for database to be ready
+      - database
     networks:
       - db-network
       - front-network
     restart: on-failure:3
 
-  # HTTP server (frontend) service
   httpd:
     build: ./http-server
     env_file:
       - .env
     depends_on:
-      - backend  # Wait for backend to be ready
+      - backend
     ports:
-      - "80:80"  # Expose HTTP server on port 80
+      - "80:80"
     networks:
       - front-network
     restart: no
 
 networks:
   db-network:
-    driver: bridge  # Network for database and backend
+    driver: bridge
   front-network:
-    driver: bridge  # Network for backend and frontend
+    driver: bridge
 
 volumes:
   db-data:
-    driver: local  # Local volume for persistent data
+    driver: local

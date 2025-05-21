@@ -1,7 +1,8 @@
+---
 - name: Launch backend API container
   docker_container:
     name: devops-backend-1
-    image: luthean3/devops-simple-api:latest   # image sur Docker Hub
+    image: luthean3/devops-backend:latest   # image sur Docker Hub
     pull: yes
     env_file: /home/admin/project/.env
     networks:

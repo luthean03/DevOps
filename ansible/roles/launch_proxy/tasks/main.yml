@@ -1,3 +1,4 @@
+---
 - name: Launch HTTPD proxy container
   docker_container:
     name: devops-httpd-1
