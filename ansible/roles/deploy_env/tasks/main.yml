@@ -10,7 +10,7 @@
 
 - name: Deploy .env file to remote server
   copy:
-    src: ../.env  # car le fichier est dans ansible/.env
+    src: ../../../../.env
     dest: /home/admin/project/.env
     owner: admin
     group: admin
