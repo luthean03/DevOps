@@ -36,9 +36,11 @@ jobs:
         run: echo "export ANSIBLE_HOST_KEY_CHECKING=False" >> $GITHUB_ENV
 
       - name: Run Ansible Playbook
+        working-directory: ansible
         run: |
           ansible-playbook \
-            -i ansible/inventories/setup.yml \
-            ansible/playbook.yml \
+            -i inventories/setup.yml \
+            playbook.yml \
             -u admin \
             --private-key ~/.ssh/id_rsa
+
