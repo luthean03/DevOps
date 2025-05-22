@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Remplace ${CONTAINER_PROXY} dans le template
-envsubst '$CONTAINER_BACKEND' \
+envsubst '$CONTAINER_BACKEND $CONTAINER_FRONTEND' \
   < /usr/local/apache2/conf/httpd.conf.template \
   > /usr/local/apache2/conf/httpd.conf
 

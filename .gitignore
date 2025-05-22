@@ -25,8 +25,7 @@ restart.flag
 .DS_Store
 Thumbs.db
 
-# Docker data volume mounts
-database/data/
+
 
 
 # Java compiled classes and packages

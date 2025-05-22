@@ -1,15 +1,18 @@
-services:
+services:   # PostgreSQL database service
   database:
+    container_name: ${DB_Host}
     build: ./database
     env_file:
       - .env
     volumes:
-      - ./Database/data:/var/lib/postgresql/data
+      - ./database/data:/var/lib/postgresql/data
     networks:
       - db-network
     restart: unless-stopped
 
+  # Backend API service
   backend:
+    container_name: ${CONTAINER_BACKEND}
     build: ./simple-api
     env_file:
       - .env
@@ -17,26 +20,39 @@ services:
       - database
     networks:
       - db-network
-      - front-network
+      - proxy-network
     restart: on-failure:3
 
+  # HTTP server acting as a reverse proxy
   httpd:
+    container_name: ${CONTAINER_HTTPD}
     build: ./http-server
     env_file:
       - .env
     depends_on:
       - backend
+      - frontend
     ports:
       - "80:80"
     networks:
+      - proxy-network
       - front-network
     restart: no
+
+  # Frontend app
+  frontend:
+    container_name: ${CONTAINER_FRONTEND}
+    build: ./front
+    networks:
+      - front-network
 
 networks:
   db-network:
     driver: bridge
   front-network:
     driver: bridge
+  proxy-network:
+    driver: bridge  
 
 volumes:
   db-data:

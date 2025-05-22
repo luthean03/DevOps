@@ -7,6 +7,6 @@
     env_file: /home/admin/project/.env
     networks:
       - name: db-network
-      - name: front-network
+      - name: proxy-network
     restart_policy: on-failure
     restart_retries: 3

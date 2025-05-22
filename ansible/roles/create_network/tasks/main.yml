@@ -9,3 +9,9 @@
     name: front-network
     driver: bridge
     state: present
+  
+- name: Create proxy-network
+  docker_network:
+    name: proxy-network
+    driver: bridge
+    state: present

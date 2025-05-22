@@ -47,3 +47,11 @@ jobs:
           context: ./http-server
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/devops-httpd:latest
+      
+      # Build and push the frontend Docker image
+      - name: Build image and push frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./front
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/devops-frontend:latest

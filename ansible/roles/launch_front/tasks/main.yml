@@ -1,0 +1,12 @@
+---
+- name: Launch frontend API container
+  docker_container:
+    name: devops-frontend-1
+    image: luthean3/devops-frontend:latest   # image sur Docker Hub
+    pull: yes
+    env_file: /home/admin/project/.env
+    networks:
+      - name: front-network
+      - name: proxy-network
+    restart_policy: on-failure
+    restart_retries: 3
