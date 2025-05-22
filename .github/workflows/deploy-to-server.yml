@@ -35,9 +35,8 @@ jobs:
       
       - name: Create .env file from secret
         run: |
-          mkdir -p /home/admin/project
-          echo "${{ secrets.ENV_CONTENT }}" > /home/admin/project/.env
-          
+          mkdir -p $GITHUB_WORKSPACE/project
+            chmod 600 $GITHUB_WORKSPACE/project/.env         
       - name: Run Ansible Playbook
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
