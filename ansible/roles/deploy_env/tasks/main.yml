@@ -7,11 +7,3 @@
     owner: admin
     group: admin
     mode: '0755'
-
-- name: Deploy .env file to remote server
-  copy:
-    src: ../../../../.env
-    dest: /home/admin/project/.env
-    owner: admin
-    group: admin
-    mode: '0644'

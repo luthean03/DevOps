@@ -72,9 +72,4 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
-    // ✅ Nouveau endpoint /students/test
-    @GetMapping("/test")
-    public ResponseEntity<String> testEndpoint() {
-        return ResponseEntity.ok("hello");
-    }
 }
