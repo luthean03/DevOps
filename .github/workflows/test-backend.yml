@@ -10,7 +10,7 @@ on:
 
 jobs:
   test-backend:
-    runs-on: debian-latest
+    runs-on: ubuntu-24.04
     steps:
       # Checkout the repository code
       - uses: actions/checkout@v4
