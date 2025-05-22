@@ -6,8 +6,8 @@ LoadModule proxy_http_module modules/mod_proxy_http.so
 <VirtualHost *:80>
     ProxyPreserveHost On
     # Forward all requests to the backend container
-    ProxyPass        / http://${CONTAINER_PROXY}:8080/
-    ProxyPassReverse / http://${CONTAINER_PROXY}:8080/
+    ProxyPass        / http://${CONTAINER_BACKEND}:8080/
+    ProxyPassReverse / http://${CONTAINER_BACKEND}:8080/
 </VirtualHost>
 
 
